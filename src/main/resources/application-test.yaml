@@ -1,0 +1,7 @@
+book:
+  default:
+    author: zmy-test
+    name: windy-test
+
+server:
+  port: 8000

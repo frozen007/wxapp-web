@@ -1,0 +1,19 @@
+book:
+  default:
+    author: zmy-dev
+    name: windy-dev
+
+eureka:
+  instance:
+
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+
+server:
+  port: 9090
+  ssl:
+    protocol: TLS
+    key-store: classpath:keystore.p12
+    key-store-password: ming;1019
+    key-store-type: JKS

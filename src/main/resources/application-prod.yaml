@@ -1,0 +1,7 @@
+book:
+  default:
+    author: zmy
+    name: windy
+
+server:
+  port: 8888
