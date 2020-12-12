@@ -17,3 +17,51 @@ server:
     key-store: classpath:keystore.p12
     key-store-password: ming;1019
     key-store-type: JKS
+
+database:
+  common:
+    validationQuery: SELECT 1
+
+  dbuser:
+    username: wxapp
+    password: wxapp1019
+    url: jdbc:mysql://cdb-qmtnfyjk.bj.tencentcdb.com:10171/wxapp
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 0
+    maxTotal: 4
+    maxIdle: 4
+    minIdle: 0
+
+  dbquartz:
+    username: quartz
+    password: quartz1019
+    url: jdbc:mysql://cdb-qmtnfyjk.bj.tencentcdb.com:10171/quartz
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 0
+    maxTotal: 4
+    maxIdle: 4
+    minIdle: 0
+
+spring:
+  quartz:
+    #相关属性配置
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: wxapp-web-scheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc

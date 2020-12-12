@@ -3,7 +3,7 @@ package com.myz.wxapp.user.controller;
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.user.dao.UserInfoDao;
 import com.myz.wxapp.util.JsonKit;
-import com.myz.wxapp.util.Response;
+import com.myz.wxapp.util.CommonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class UserController {
     private JsonKit jsonKit;
 
     @RequestMapping(path="/login")
-    public Response login(@RequestBody Map req) {
+    public CommonResponse login(@RequestBody Map req) {
 
         String js_code = (String) req.get("code");
         logger.info("code={}", js_code);
@@ -59,7 +59,7 @@ public class UserController {
             logger.error("", e);
         }
 
-        return new Response().success();
+        return new CommonResponse().success();
     }
 
     @Autowired
@@ -69,7 +69,7 @@ public class UserController {
     private UserInfoDao userInfoDao;
 
     @RequestMapping(path="/getuser")
-    public Response getUser() {
+    public CommonResponse getUser() {
 
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dbuser);
         jdbcTemplate.query("select id, user_id, creation_time, update_time from user_info",
@@ -87,6 +87,6 @@ public class UserController {
         }
 
 
-        return new Response().success();
+        return new CommonResponse().success();
     }
 }

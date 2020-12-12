@@ -1,6 +1,6 @@
 package com.myz.wxapp.util;
 
-public class Response {
+public class CommonResponse {
     private static final String SUCCESS = "ok";
 
     private static final String ERROR = "error";
@@ -9,30 +9,30 @@ public class Response {
 
     private Object data;
 
-    public Response() {
+    public CommonResponse() {
         this.status = SUCCESS;
     }
 
-    public Response(Object data) {
+    public CommonResponse(Object data) {
         this(data, SUCCESS);
     }
 
-    public Response(Object data, String status) {
+    public CommonResponse(Object data, String status) {
         this.data = data;
         this.status = status;
     }
 
-    public Response success() {
+    public CommonResponse success() {
         return success("");
     }
 
-    public Response success(Object data) {
+    public CommonResponse success(Object data) {
         this.status = SUCCESS;
         this.data = data;
         return this;
     }
 
-    public Response failure(Object data) {
+    public CommonResponse failure(Object data) {
         this.status = ERROR;
         this.data = data;
         return this;
