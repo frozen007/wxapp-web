@@ -70,20 +70,9 @@ public class UserController {
 
     @RequestMapping(path="/getuser")
     public CommonResponse getUser() {
-
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dbuser);
-        jdbcTemplate.query("select id, user_id, creation_time, update_time from user_info",
-                new RowCallbackHandler() {
-            @Override
-            public void processRow(ResultSet rs) throws SQLException {
-                logger.info("id={}, user_id={}, creation_time={}, update_time={}",
-                        rs.getLong(1), rs.getLong(2), rs.getLong(3), rs.getLong(4));
-            }
-        });
-
         List<UserInfo> allUserInfo = userInfoDao.getAllUserInfo();
         for (UserInfo userInfo : allUserInfo) {
-            logger.info("get from dao user id={} ", userInfo.getId());
+            logger.info("get from dao user id={} user_id={}", userInfo.getId(), userInfo.getUser_id());
         }
 
 
