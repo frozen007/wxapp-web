@@ -1,9 +1,11 @@
 package com.myz.wxapp.config;
 
+import com.myz.inf.batch.BatchJobBeanPostProcessor;
 import org.quartz.Scheduler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -22,5 +24,9 @@ public class JobConfiguration {
     @Autowired
     private Scheduler quartzScheduler;
 
+    @Bean
+    public BatchJobBeanPostProcessor batchJobBeanPostProcessor() {
+        return new BatchJobBeanPostProcessor();
+    }
 
 }

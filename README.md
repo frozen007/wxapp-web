@@ -10,7 +10,7 @@
 * com.myz.inf.datasource.MultiDataSource: 动态设置线程上下文的数据源，用ThreadLocal实现
 * com.myz.inf.datasource.MultiDataSourceAspect: 在所有dao包下面的类建立切面，根据DataSource注解的数据源切换本次执行的目标数据源
 
-### ticket服务
+### Ticket服务
 位于com.myz.wxapp.ticket，轻量级的分布式id序列生成服务，基于mysql，支持多主题。
 
 

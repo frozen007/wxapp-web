@@ -24,7 +24,7 @@ database:
 
   dbuser:
     username: wxapp
-    password: wxapp1019
+    password: javGa2kFLbzQ_
     url: jdbc:mysql://cdb-qmtnfyjk.bj.tencentcdb.com:10171/wxapp
     driverClassName: com.mysql.jdbc.Driver
     initialSize: 0
@@ -34,7 +34,7 @@ database:
 
   dbquartz:
     username: quartz
-    password: quartz1019
+    password: 8drFUuACugak6A
     url: jdbc:mysql://cdb-qmtnfyjk.bj.tencentcdb.com:10171/quartz
     driverClassName: com.mysql.jdbc.Driver
     initialSize: 0
