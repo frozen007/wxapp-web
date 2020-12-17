@@ -50,7 +50,7 @@ spring:
         quartz:
           scheduler:
             instanceName: wxapp-web-scheduler
-            instanceId: AUTO
+            instanceId: wxapp-web_${server.port}
           jobStore:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate

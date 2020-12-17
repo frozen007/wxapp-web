@@ -5,10 +5,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class WXAppWebApplication {
+public class WXAppWebApplication extends SpringApplication {
+
+	public WXAppWebApplication() {
+		super(WXAppWebApplication.class);
+	}
+
 
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -20,8 +26,13 @@ public class WXAppWebApplication {
 		return new JsonKit();
 	}
 
+	@Override
+	protected void configurePropertySources(ConfigurableEnvironment environment, String[] args) {
+		super.configurePropertySources(environment, args);
+	}
+
 	public static void main(String[] args) {
-		SpringApplication.run(WXAppWebApplication.class, args);
+		new WXAppWebApplication().run(args);
 	}
 
 }

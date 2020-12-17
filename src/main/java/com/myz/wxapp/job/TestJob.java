@@ -16,7 +16,7 @@ public class TestJob {
 
     private long counter = 0;
 
-    @JobEntry(name="TestJob", cron = "0 0 12 * * ?")
+    @JobEntry(name="TestJob", cron = "0/10 * * * * ?")
     public void run() {
         logger.info("counter is {}", counter++);
     }

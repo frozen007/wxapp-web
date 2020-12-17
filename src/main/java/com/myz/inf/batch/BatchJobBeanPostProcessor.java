@@ -13,7 +13,6 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,8 +26,6 @@ public class BatchJobBeanPostProcessor implements BeanPostProcessor, Ordered, Ap
 
     private ApplicationContext applicationContext;
 
-    private BatchScheduleManager batchScheduleManager;
-
     private Map<String, JobHolder> jobRegistry = new HashMap<>();
 
     @Override
@@ -41,7 +38,7 @@ public class BatchJobBeanPostProcessor implements BeanPostProcessor, Ordered, Ap
                 jobRegistry.put(jobEntry.name(), new JobHolder(jobEntry, bean, method));
             }
         });
-        return null;
+        return bean;
     }
 
     @Override
@@ -57,33 +54,20 @@ public class BatchJobBeanPostProcessor implements BeanPostProcessor, Ordered, Ap
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         if (event.getApplicationContext() == this.applicationContext) {
-            //todo: schedule all jobs
             scheduleAllJobs();
         }
     }
 
     private void scheduleAllJobs() {
+        BatchScheduler batchScheduler = applicationContext.getBean("batchScheduler", BatchScheduler.class);
+
+        BatchScheduleManager.setJobRegistry(jobRegistry);
 
         for (Map.Entry<String, JobHolder> entry : jobRegistry.entrySet()) {
             JobHolder jobHolder = entry.getValue();
-            batchScheduleManager.scheduleJob(jobHolder.jobEntry, jobHolder.jobBean, jobHolder.jobMethod);
+            batchScheduler.scheduleJob(jobHolder.getJobEntry());
         }
 
-        batchScheduleManager.startScheduler();
-    }
-
-    public static class JobHolder {
-
-        JobEntry jobEntry;
-
-        Object jobBean;
-
-        Method jobMethod;
-
-        public JobHolder(JobEntry jobEntry, Object jobBean, Method jobMethod) {
-            this.jobEntry = jobEntry;
-            this.jobBean = jobBean;
-            this.jobMethod = jobMethod;
-        }
+        batchScheduler.startScheduler();
     }
 }

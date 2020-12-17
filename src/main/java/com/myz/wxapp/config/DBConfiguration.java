@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +20,7 @@ import java.util.Properties;
 /**
  * DBConfiguration
  * Created by myz
- * Date 2020/12/3 20:13BasicDataSource
+ * Date 2020/12/3 20:13
  */
 @Configuration
 @MapperScan({"com.myz.wxapp.user.dao","com.myz.wxapp.ticket.dao"})
@@ -44,25 +43,6 @@ public class DBConfiguration {
         prop.put("maxTotal", env.getProperty("database.dbuser.maxTotal"));
         prop.put("maxIdle", env.getProperty("database.dbuser.maxIdle"));
         prop.put("minIdle", env.getProperty("database.dbuser.minIdle"));
-
-        prop.put("validationQuery",env.getProperty("database.common.validationQuery"));
-
-        return BasicDataSourceFactory.createDataSource(prop);
-    }
-
-    @Bean("dbquartz")
-    @QuartzDataSource
-    public DataSource dbquartzDataSource() throws Exception {
-        Properties prop = new Properties();
-
-        prop.put("username", env.getProperty("database.dbquartz.username"));
-        prop.put("password", env.getProperty("database.dbquartz.password"));
-        prop.put("url", env.getProperty("database.dbquartz.url"));
-        prop.put("driverClassName", env.getProperty("database.dbquartz.driverClassName"));
-        prop.put("initialSize", env.getProperty("database.dbquartz.initialSize"));
-        prop.put("maxTotal", env.getProperty("database.dbquartz.maxTotal"));
-        prop.put("maxIdle", env.getProperty("database.dbquartz.maxIdle"));
-        prop.put("minIdle", env.getProperty("database.dbquartz.minIdle"));
 
         prop.put("validationQuery",env.getProperty("database.common.validationQuery"));
 
