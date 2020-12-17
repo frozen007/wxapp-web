@@ -11,7 +11,27 @@
 * com.myz.inf.datasource.MultiDataSourceAspect: 在所有dao包下面的类建立切面，根据DataSource注解的数据源切换本次执行的目标数据源
 
 ### Ticket服务
-位于com.myz.wxapp.ticket，轻量级的分布式id序列生成服务，基于mysql，支持多主题。
+位于com.myz.wxapp.ticket，轻量级的分布式id序列生成服务，基于mysql，支持多主题，支持轻量级并发
 
+* com.myz.wxapp.ticket.service.TicketService: 获取ticket的服务
 
 ### 批处理任务管理
+位于com.myz.inf.batch，封装了用于开发job任务的组件
+
+* com.myz.inf.batch.BatchJobBeanPostProcessor: 用于初始化job组件，进行job注册，并封装调用底层调度组件
+* com.myz.inf.batch.quartz.QuartzSchedulerSupport: 使用quartz调度组件的实现
+
+`
+
+    @Bean
+    public BatchJobBeanPostProcessor batchJobBeanPostProcessor() {
+        return new BatchJobBeanPostProcessor();
+    }
+
+    @Bean("batchScheduler")
+    public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler) {
+        return new QuartzSchedulerSupport(quartzScheduler);
+    }
+
+`
+
