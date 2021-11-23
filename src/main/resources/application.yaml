@@ -1,17 +1,17 @@
 spring:
   profiles:
-    active: dev
+    active: prod
 
   application:
     name: springdemo
 
 
-eureka:
-  instance:
-
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9999/eureka/
+#eureka:
+#  instance:
+#
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:9999/eureka/
 
 management:
   endpoints:
