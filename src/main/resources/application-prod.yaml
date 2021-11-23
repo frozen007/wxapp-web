@@ -14,7 +14,7 @@ database:
     username: wxapp
     password: javGa2kFLbzQ_
     url: jdbc:mariadb://localhost:3306/wxapp
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
     maxIdle: 4
@@ -24,7 +24,7 @@ database:
     username: quartz
     password: 8drFUuACugak6A
     url: jdbc:mariadb://localhost:3306/quartz
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
     maxIdle: 4
