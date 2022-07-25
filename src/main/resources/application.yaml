@@ -3,7 +3,7 @@ spring:
     active: prod
 
   application:
-    name: springdemo
+    name: wxapp-web
 
 
 #eureka:
