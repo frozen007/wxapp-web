@@ -21,8 +21,9 @@ steps:
     settings:
       host: 212.129.252.68 # 远程连接地址
       username: root # 远程连接账号
-      password:
-        from_secret: ssh_password # 从Secret中读取SSH密码
+      volumes:
+        - /root/.ssh/id_rsa:/root/ssh/drone_rsa
+      key_path: /root/ssh/drone_rsa
       port: 22 # 远程连接端口
       command_timeout: 5m # 远程执行命令超时时间
       script:
