@@ -8,8 +8,27 @@ steps:
     volumes:
       - name: mvn-cache
         path: /root/.m2
+      - name: mvn-build
+        path: /app/build
     commands:
       - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - cp target/wxapp-web-0.0.1-SNAPSHOT.jar /app/build/wxapp-web-0.0.1-SNAPSHOT.jar
+      - cp Dockerfile /app/build/Dockerfile
+      - cp run.sh /app/build/run.sh
+
+  - name: start
+    image: appleboy/drone-ssh # SSH工具镜像
+    settings:
+      host: 212.129.252.68 # 远程连接地址
+      username: root # 远程连接账号
+      password:
+        from_secret: ssh_password # 从Secret中读取SSH密码
+      port: 22 # 远程连接端口
+      command_timeout: 5m # 远程执行命令超时时间
+      script:
+        - cd /app/build # 进入宿主机构建目录
+        - chmod +x run.sh # 更改为可执行脚本
+        - ./run.sh # 运行脚本打包应用镜像并运行
 
 volumes:
   - name: mvn-build
