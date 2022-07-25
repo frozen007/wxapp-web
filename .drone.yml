@@ -1,8 +1,22 @@
 kind: pipeline
+type: docker
 name: default
 
 steps:
   - name: build
     image: maven:3-jdk-11
+    volumes:
+      - name: mvn-cache
+        path: /root/.m2
     commands:
-      - mvn compile -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+volumes:
+  - name: mvn-build
+    host:
+      path: /appdata/maven/build
+
+  - name: mvn-cache
+    host:
+      path: /appdata/maven/cache
+
