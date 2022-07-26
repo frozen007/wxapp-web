@@ -18,11 +18,12 @@ steps:
 
   - name: start
     image: appleboy/drone-ssh # SSH工具镜像
+    volumes:
+      - name: id_rsa
+        path: /root/ssh/drone_rsa
     settings:
       host: 212.129.252.68 # 远程连接地址
       username: root # 远程连接账号
-      volumes:
-        - /root/.ssh/id_rsa:/root/ssh/drone_rsa
       key_path: /root/ssh/drone_rsa
       port: 22 # 远程连接端口
       command_timeout: 5m # 远程执行命令超时时间
@@ -39,4 +40,8 @@ volumes:
   - name: mvn-cache
     host:
       path: /appdata/maven/cache
+
+  - name: id_rsa
+    host:
+      path: /root/.ssh/id_rsa
 
