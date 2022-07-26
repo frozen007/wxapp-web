@@ -3,6 +3,11 @@
 group_name='wxapp-web'
 # 定义应用名称
 app_name='wxapp-web-drone'
+if [ -z "$1" ]; then
+  app_instance_name=${app_name}_$1
+else
+  app_instance_name=${app_name}
+fi
 # 定义应用版本
 app_version='1.0-SNAPSHOT'
 # 定义应用环境
@@ -17,10 +22,10 @@ echo '----rm image----'
 # 打包编译docker镜像
 docker build -t ${group_name}/${app_name}:${app_version} .
 echo '----build image----'
-docker run -p 9090:9090 --name ${app_name} \
+docker run -p 9090:9090 --name ${app_instance_name} \
 -e 'spring.profiles.active'=${profile_active} \
 -e TZ="Asia/Shanghai" \
 -v /etc/localtime:/etc/localtime \
--v /appdata/app/${app_name}/logs:/var/logs \
+-v /appdata/app/${app_instance_name}/logs:/var/logs \
 -d ${group_name}/${app_name}:${app_version}
 echo '----start container----'
