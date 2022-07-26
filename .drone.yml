@@ -26,7 +26,7 @@ steps:
         from_secret: ssh_password
       command_timeout: 5m # 远程执行命令超时时间
       script:
-        - cd /app/build # 进入宿主机构建目录
+        - cd /appdata/maven/build # 进入宿主机构建目录
         - chmod +x docker-run.sh # 更改为可执行脚本
         - ./docker-run.sh # 运行脚本打包应用镜像并运行
 
