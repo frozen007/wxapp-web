@@ -6,16 +6,16 @@ app_name='wxapp-web-drone'
 if [ -z "$1" ]; then
   app_instance_name=${app_name}_$1
 else
-  app_instance_name=${app_name}
+  app_instance_name=${app_name}_01
 fi
 # 定义应用版本
 app_version='1.0-SNAPSHOT'
 # 定义应用环境
 profile_active='dev'
 echo '----copy jar----'
-docker stop ${app_name}
+docker stop ${app_instance_name}
 echo '----stop container----'
-docker rm ${app_name}
+docker rm ${app_instance_name}
 echo '----rm container----'
 docker rmi ${group_name}/${app_name}:${app_version}
 echo '----rm image----'
