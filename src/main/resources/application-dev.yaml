@@ -12,11 +12,6 @@ book:
 
 server:
   port: 9090
-  ssl:
-    protocol: TLS
-    key-store: classpath:keystore.p12
-    key-store-password: ming;1019
-    key-store-type: JKS
 
 database:
   common:
