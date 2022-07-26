@@ -22,8 +22,8 @@ steps:
       host: 212.129.252.68 # 远程连接地址
       username: root # 远程连接账号
       port: 22 # 远程连接端口
-      key:
-        from_secret: ssh_key
+      password:
+        from_secret: ssh_password
       command_timeout: 5m # 远程执行命令超时时间
       script:
         - cd /app/build # 进入宿主机构建目录
