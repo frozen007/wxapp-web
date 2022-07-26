@@ -18,8 +18,6 @@ steps:
 
   - name: start
     image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
-    environment:
-      INSTANCE-ID: ${instance-id}
     settings:
       host: 212.129.252.68 # 远程连接地址
       username: root # 远程连接账号
@@ -30,7 +28,7 @@ steps:
       script:
         - cd /appdata/maven/build # 进入宿主机构建目录
         - chmod +x docker-run.sh # 更改为可执行脚本
-        - ./docker-run.sh ${INSTANCE-ID} # 运行脚本打包应用镜像并运行
+        - ./docker-run.sh ${INSTANCE_ID} # 运行脚本打包应用镜像并运行
 
 volumes:
   - name: mvn-build
