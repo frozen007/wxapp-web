@@ -4,9 +4,9 @@ group_name='wxapp-web'
 # 定义应用名称
 app_name='wxapp-web-drone'
 if [ -z "$1" ]; then
-  app_instance_name=${app_name}_$1
-else
   app_instance_name=${app_name}_01
+else
+  app_instance_name=${app_name}_$1
 fi
 # 定义应用版本
 app_version='1.0-SNAPSHOT'

@@ -15,6 +15,7 @@ steps:
       - cp target/wxapp-web-0.0.1-SNAPSHOT.jar /app/build/wxapp-web-0.0.1-SNAPSHOT.jar
       - cp Dockerfile /app/build/Dockerfile
       - cp docker-run.sh /app/build/docker-run.sh
+      - echo INSTANCE_ID=${INSTANCE_ID}
 
   - name: start
     image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
