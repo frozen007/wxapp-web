@@ -20,9 +20,6 @@ docker rm ${app_instance_name}
 echo '----rm container----'
 docker rmi ${group_name}/${app_name}:${app_version}
 echo '----rm image----'
-# 打包编译docker镜像
-docker build -t ${group_name}/${app_name}:${app_version} .
-echo '----build image----'
 docker run -p 9090:9090 --name ${app_instance_name} \
 -e 'spring.profiles.active'=${profile_active} \
 -e TZ="Asia/Shanghai" \
