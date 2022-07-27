@@ -23,6 +23,11 @@ steps:
 
   - name: run
     image: amd64/ubuntu:22.10
+    volumes:
+      - name: docker-sock
+        path: /var/run/docker.sock
+      - name: docker-command
+        path: /usr/bin/docker
     commands:
       - sh docker-run.sh myz wxapp-web 0.0.1-SNAPSHOT ${instance_id}
 
