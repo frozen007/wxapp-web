@@ -3,46 +3,74 @@ type: docker
 name: default
 
 steps:
+#  - name: build
+#    image: maven:3-jdk-11
+#    volumes:
+#      - name: mvn-cache
+#        path: /root/.m2
+#      - name: mvn-build
+#        path: /app/build
+#    commands:
+#      - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+#      - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+#      - cp target/wxapp-web-0.0.1-SNAPSHOT.jar /app/build/wxapp-web-0.0.1-SNAPSHOT.jar
+#      - cp Dockerfile /app/build/Dockerfile
+#      - cp docker-run.sh /app/build/docker-run.sh
+
+#  - name: publish
+#    image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
+#    settings:
+#      host: 212.129.252.68 # 远程连接地址
+#      username: root # 远程连接账号
+#      port: 22 # 远程连接端口
+#      password:
+#        from_secret: ssh_password
+#      command_timeout: 5m # 远程执行命令超时时间
+#      script:
+#        - cd /appdata/maven/build # 进入宿主机构建目录
+#        - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
+#        - docker build -t myz/wxapp-web:0.0.1-SNAPSHOT .
+
+#  - name: run
+#    image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
+#    settings:
+#      host: 212.129.252.68 # 远程连接地址
+#      username: root # 远程连接账号
+#      port: 22 # 远程连接端口
+#      password:
+#        from_secret: ssh_password
+#      command_timeout: 5m # 远程执行命令超时时间
+#      script:
+#        - cd /appdata/maven/build # 进入宿主机构建目录
+#        - sh docker-run.sh myz wxapp-web 0.0.1-SNAPSHOT ${instance_id}
+
   - name: build
     image: maven:3-jdk-11
+    environment:
+      group_name: myz
+      app_name: wxapp-web
+      app_version: 0.0.1-SNAPSHOT
     volumes:
       - name: mvn-cache
         path: /root/.m2
-      - name: mvn-build
-        path: /app/build
     commands:
       - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - cp target/wxapp-web-0.0.1-SNAPSHOT.jar /app/build/wxapp-web-0.0.1-SNAPSHOT.jar
-      - cp Dockerfile /app/build/Dockerfile
-      - cp docker-run.sh /app/build/docker-run.sh
 
   - name: publish
-    image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
-    settings:
-      host: 212.129.252.68 # 远程连接地址
-      username: root # 远程连接账号
-      port: 22 # 远程连接端口
-      password:
-        from_secret: ssh_password
-      command_timeout: 5m # 远程执行命令超时时间
-      script:
-        - cd /appdata/maven/build # 进入宿主机构建目录
-        - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
-        - docker build -t myz/wxapp-web:0.0.1-SNAPSHOT .
+    image: amd64/ubuntu:22.10
+    volumes:
+      - name: docker-sock
+        path: /var/run/docker.sock
+      - name: docker-command
+        path: /usr/bin/docker
+    commands:
+      - docker rmi ${group_name}/${app_name}:${app_version}
+      - docker build -t ${group_name}/${app_name}:${app_version} .
 
   - name: run
-    image: appleboy/drone-ssh:1.6.4 # SSH工具镜像
-    settings:
-      host: 212.129.252.68 # 远程连接地址
-      username: root # 远程连接账号
-      port: 22 # 远程连接端口
-      password:
-        from_secret: ssh_password
-      command_timeout: 5m # 远程执行命令超时时间
-      script:
-        - cd /appdata/maven/build # 进入宿主机构建目录
-        - sh docker-run.sh myz wxapp-web 0.0.1-SNAPSHOT ${instance_id}
+    image: amd64/ubuntu:22.10
+    commands:
+      - sh docker-run.sh ${group_name} ${app_name} ${app_version} ${instance_id}
 
 volumes:
   - name: mvn-build
