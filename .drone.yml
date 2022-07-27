@@ -64,7 +64,7 @@ steps:
       - name: docker-command
         path: /usr/bin/docker
     commands:
-      - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
+#      - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
       - docker build -t myz/wxapp-web:0.0.1-SNAPSHOT .
 
   - name: run
