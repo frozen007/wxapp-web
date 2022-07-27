@@ -18,8 +18,6 @@ docker stop ${app_instance_name}
 echo '----stop container----'
 docker rm ${app_instance_name}
 echo '----rm container----'
-docker rmi ${group_name}/${app_name}:${app_version}
-echo '----rm image----'
 docker run -p 9090:9090 --name ${app_instance_name} \
 -e 'spring.profiles.active'=${profile_active} \
 -e TZ="Asia/Shanghai" \

@@ -28,6 +28,7 @@ steps:
       command_timeout: 5m # 远程执行命令超时时间
       script:
         - cd /appdata/maven/build # 进入宿主机构建目录
+        - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
         - docker build -t myz/wxapp-web:0.0.1-SNAPSHOT .
 
   - name: run
