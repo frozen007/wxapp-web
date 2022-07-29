@@ -46,10 +46,6 @@ steps:
 
   - name: build
     image: maven:3-jdk-11
-#    environment:
-#      group_name: myz
-#      app_name: wxapp-web
-#      app_version: 0.0.1-SNAPSHOT
     volumes:
       - name: mvn-cache
         path: /root/.m2
@@ -64,13 +60,13 @@ steps:
       - name: docker-command
         path: /usr/bin/docker
     commands:
-#      - docker rmi myz/wxapp-web:0.0.1-SNAPSHOT
-      - docker build -t myz/wxapp-web:0.0.1-SNAPSHOT .
+      - docker rmi myz/wxapp-web:${DRONE_BUILD_NUMBER}
+      - docker build -t myz/wxapp-web:${DRONE_BUILD_NUMBER} .
 
-  - name: run
+  - name: deploy
     image: amd64/ubuntu:22.10
     commands:
-      - sh docker-run.sh myz wxapp-web 0.0.1-SNAPSHOT ${instance_id}
+      - sh docker-run.sh myz wxapp-web ${DRONE_BUILD_NUMBER} ${instance_id}
 
 volumes:
   - name: mvn-build
