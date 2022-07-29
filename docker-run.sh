@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-# 定义应用组名
-group_name=$1
-# 定义应用名称
-app_name=$2
-# 定义应用版本
-app_version=$3
-instance_id=$4
+app_name=$1
+image=$2
+instance_id=$3
 if [ -z "$instance_id" ]; then
   app_instance_name=${app_name}_01
 else
@@ -23,5 +19,5 @@ docker run -p 9090:9090 --name ${app_instance_name} \
 -e TZ="Asia/Shanghai" \
 -v /etc/localtime:/etc/localtime \
 -v /appdata/app/${app_instance_name}/logs:/var/logs \
--d ${group_name}/${app_name}:${app_version}
+-d ${image}
 echo '----start container----'
