@@ -60,7 +60,6 @@ steps:
       - name: docker-command
         path: /usr/bin/docker
     commands:
-      - docker rmi myz/wxapp-web:${DRONE_BUILD_NUMBER}
       - docker build -t myz/wxapp-web:${DRONE_BUILD_NUMBER} .
 
   - name: deploy
