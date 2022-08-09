@@ -35,7 +35,6 @@ public class JobConfiguration {
 
     @Bean("dbquartz")
     @QuartzDataSource
-    @Order(0)
     public DataSource dbquartzDataSource() throws Exception {
         Properties prop = new Properties();
 
@@ -54,7 +53,6 @@ public class JobConfiguration {
     }
 
     @Bean("batchScheduler")
-    @Order(2)
     public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler) {
         return new QuartzSchedulerSupport(quartzScheduler);
     }
