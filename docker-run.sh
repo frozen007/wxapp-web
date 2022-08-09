@@ -14,7 +14,8 @@ docker stop ${app_instance_name}
 echo '----stop container----'
 docker rm ${app_instance_name}
 echo '----rm container----'
-docker run -p 9090:9090 --name ${app_instance_name} \
+docker run --name ${app_instance_name} \
+--dns=10.0.16.10 \
 -e 'spring.profiles.active'=${profile_active} \
 -e TZ="Asia/Shanghai" \
 -v /etc/localtime:/etc/localtime \
