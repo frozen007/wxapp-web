@@ -6,12 +6,10 @@ spring:
     name: wxapp-web
 
 
-#eureka:
-#  instance:
-#
-#  client:
-#    serviceUrl:
-#      defaultZone: http://localhost:9999/eureka/
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka.zmy-inc.com:8761/eureka/
 
 management:
   endpoints:
