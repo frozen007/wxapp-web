@@ -51,13 +51,14 @@ public class JobConfiguration {
         return BasicDataSourceFactory.createDataSource(prop);
     }
 
+    @Bean("batchScheduler")
+    public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler, @Qualifier("dbquartz") DataSource dataSource) {
+        return new QuartzSchedulerSupport(quartzScheduler);
+    }
+
     @Bean
     public BatchJobBeanPostProcessor batchJobBeanPostProcessor() {
         return new BatchJobBeanPostProcessor();
     }
 
-    @Bean("batchScheduler")
-    public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler) {
-        return new QuartzSchedulerSupport(quartzScheduler);
-    }
 }
