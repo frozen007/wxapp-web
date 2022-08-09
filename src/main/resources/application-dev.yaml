@@ -3,13 +3,6 @@ book:
     author: zmy-dev
     name: windy-dev
 
-#eureka:
-#  instance:
-#
-#  client:
-#    registerWithEureka: false
-#    fetchRegistry: false
-
 server:
   port: 9090
 
@@ -20,7 +13,7 @@ database:
   dbuser:
     username: wxapp
     password: javGa2kFLbzQ_
-    url: jdbc:mariadb://172.17.0.1:3306/wxapp
+    url: jdbc:mariadb://212.129.252.68:3306/wxapp
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
@@ -30,7 +23,7 @@ database:
   dbquartz:
     username: quartz
     password: 8drFUuACugak6A
-    url: jdbc:mariadb://172.17.0.1:3306/quartz
+    url: jdbc:mariadb://212.129.252.68:3306/quartz
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4

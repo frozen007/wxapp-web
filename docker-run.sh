@@ -8,7 +8,7 @@ else
   app_instance_name=${app_name}_${instance_id}
 fi
 # 定义应用环境
-profile_active='dev'
+profile_active='prod'
 echo '----copy jar----'
 docker stop ${app_instance_name}
 echo '----stop container----'
