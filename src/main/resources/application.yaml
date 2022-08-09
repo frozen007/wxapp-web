@@ -29,6 +29,8 @@ spring:
     job-store-type: "jdbc"
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     serviceUrl:
       defaultZone: http://eureka.zmy-inc.com:8761/eureka/
