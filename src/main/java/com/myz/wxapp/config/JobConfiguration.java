@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.quartz.QuartzDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
@@ -34,6 +35,7 @@ public class JobConfiguration {
 
     @Bean("dbquartz")
     @QuartzDataSource
+    @Order(0)
     public DataSource dbquartzDataSource() throws Exception {
         Properties prop = new Properties();
 
@@ -52,7 +54,8 @@ public class JobConfiguration {
     }
 
     @Bean("batchScheduler")
-    public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler, @Qualifier("dbquartz") DataSource dataSource) {
+    @Order(2)
+    public QuartzSchedulerSupport quartzScheduleManager(@Qualifier("quartzScheduler") Scheduler quartzScheduler) {
         return new QuartzSchedulerSupport(quartzScheduler);
     }
 
