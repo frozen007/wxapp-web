@@ -29,3 +29,8 @@ database:
     maxTotal: 4
     maxIdle: 4
     minIdle: 0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://212.129.252.68:8761/eureka/

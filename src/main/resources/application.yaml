@@ -14,7 +14,8 @@ spring:
             instanceName: wxapp-web-scheduler
             instanceId: ${app.instance.name}_${server.port}
           jobStore:
-            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            # 由spring的SchedulerFactoryBean自动判断JobStore的实现类
+            # class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_
             isClustered: true

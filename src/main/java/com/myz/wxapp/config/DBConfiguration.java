@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -48,13 +49,6 @@ public class DBConfiguration {
 
         return BasicDataSourceFactory.createDataSource(prop);
     }
-
-//    @Bean("transactionManager")
-//    public DataSourceTransactionManager createTransactionManager(@Qualifier("quartzDataSource") DataSource dbqurtz) {
-//        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
-//        dataSourceTransactionManager.setDataSource(dbqurtz);
-//        return dataSourceTransactionManager;
-//    }
 
     @Bean("multiDataSource")
     public DataSource multiDataSource(DataSource dbuser) throws Exception {

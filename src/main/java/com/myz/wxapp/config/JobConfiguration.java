@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -33,7 +34,7 @@ public class JobConfiguration {
     @Autowired
     private Environment env;
 
-    @Bean("dbquartz")
+    @Bean("quartzDataSource")
     @QuartzDataSource
     public DataSource dbquartzDataSource() throws Exception {
         Properties prop = new Properties();
@@ -50,6 +51,13 @@ public class JobConfiguration {
         prop.put("validationQuery",env.getProperty("database.common.validationQuery"));
 
         return BasicDataSourceFactory.createDataSource(prop);
+    }
+
+    @Bean("transactionManager-quartz")
+    public DataSourceTransactionManager createTransactionManager(@Qualifier("quartzDataSource") DataSource dataSource) {
+        DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
+        dataSourceTransactionManager.setDataSource(dataSource);
+        return dataSourceTransactionManager;
     }
 
     @Bean("batchScheduler")

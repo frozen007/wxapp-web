@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TestController
@@ -26,8 +28,10 @@ public class TestController {
     @RequestMapping(path="/getusers")
     public CommonResponse getUsers() {
         List<UserInfo> users = wxAppClient.getUsers();
+        Map<String, Object> data = new HashMap<>();
+        data.put("users", users);
 
-        return new CommonResponse().success(users);
+        return new CommonResponse().success(data);
     }
 
     @FeignClient("wxapp-web")
