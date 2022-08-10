@@ -3,14 +3,11 @@ package com.myz.wxapp.user.controller;
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.user.dao.UserInfoDao;
 import com.myz.wxapp.util.JsonKit;
-import com.myz.wxapp.util.CommonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = "/user", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/user")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -30,7 +27,7 @@ public class UserController {
     private JsonKit jsonKit;
 
     @RequestMapping(path="/login")
-    public CommonResponse login(@RequestBody Map req) {
+    public String login(@RequestBody Map req) {
 
         String js_code = (String) req.get("code");
         logger.info("code={}", js_code);
@@ -54,20 +51,19 @@ public class UserController {
             logger.error("", e);
         }
 
-        return new CommonResponse().success();
+        return "SUCCESS";
     }
 
     @Autowired
     private UserInfoDao userInfoDao;
 
-    @RequestMapping(path="/getuser")
-    public CommonResponse getUser() {
+    @RequestMapping(path="/getusers")
+    public List<UserInfo> getUsers() {
         List<UserInfo> allUserInfo = userInfoDao.getAllUserInfo();
         for (UserInfo userInfo : allUserInfo) {
             logger.info("get from dao user id={} user_id={}", userInfo.getId(), userInfo.getUser_id());
         }
 
-
-        return new CommonResponse().success();
+        return allUserInfo;
     }
 }

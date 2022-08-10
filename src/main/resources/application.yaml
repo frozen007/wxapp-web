@@ -35,6 +35,14 @@ eureka:
     serviceUrl:
       defaultZone: http://eureka.zmy-inc.com:8761/eureka/
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+
 management:
   endpoints:
     web:
