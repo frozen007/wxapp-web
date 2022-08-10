@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * TestQuartzJob
  * Created by myz
@@ -17,7 +19,13 @@ public class TestJob {
     private long counter = 0;
 
     @JobEntry(name="TestJob", cron = "0/10 * * * * ?")
-    public void run() {
+    public void runTestJob() {
         logger.info("counter is {}", counter++);
     }
+
+    @JobEntry(name="TestWorker", cron = "0/4 * * * * ?")
+    public void runTestWorker() {
+        logger.info("current time is {}", new Date());
+    }
+
 }
