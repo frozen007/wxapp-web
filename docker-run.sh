@@ -15,7 +15,8 @@ echo '----stop container----'
 docker rm ${app_instance_name}
 echo '----rm container----'
 docker run --name ${app_instance_name} \
---dns=10.0.16.10 \
+--dns 10.0.16.10 \
+--net myz-net \
 -e 'spring.profiles.active'=${profile_active} \
 -e 'app.instance.name'=${app_instance_name} \
 -e TZ="Asia/Shanghai" \
