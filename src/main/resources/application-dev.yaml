@@ -1,3 +1,7 @@
+spring:
+  zipkin:
+    base-url: http://212.129.252.68:9411/
+
 book:
   default:
     author: zmy-dev

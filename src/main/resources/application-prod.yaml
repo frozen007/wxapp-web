@@ -1,3 +1,7 @@
+spring:
+  zipkin:
+    base-url: https://zipkin.zmy-inc.com:9411/
+
 book:
   default:
     author: zmy

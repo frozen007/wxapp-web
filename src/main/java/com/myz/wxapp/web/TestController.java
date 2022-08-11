@@ -2,6 +2,8 @@ package com.myz.wxapp.web;
 
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.util.CommonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
@@ -21,6 +23,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 public class TestController {
+    private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
     private WxAppClient wxAppClient;
@@ -30,6 +33,8 @@ public class TestController {
         List<UserInfo> users = wxAppClient.getUsers();
         Map<String, Object> data = new HashMap<>();
         data.put("users", users);
+
+        logger.info("get users size={}", users.size());
 
         return new CommonResponse().success(data);
     }

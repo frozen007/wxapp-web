@@ -59,6 +59,7 @@ public class UserController {
 
     @RequestMapping(path="/getusers")
     public List<UserInfo> getUsers() {
+        logger.info("getUsers from db");
         List<UserInfo> allUserInfo = userInfoDao.getAllUserInfo();
         for (UserInfo userInfo : allUserInfo) {
             logger.info("get from dao user id={} user_id={}", userInfo.getId(), userInfo.getUser_id());

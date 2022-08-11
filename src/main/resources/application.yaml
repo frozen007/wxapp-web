@@ -5,6 +5,9 @@ spring:
   application:
     name: wxapp-web
 
+  zipkin:
+    base-url: https://zipkin.zmy-inc.com:9411/
+
   quartz:
     #相关属性配置
     properties:
