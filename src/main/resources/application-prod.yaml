@@ -1,6 +1,6 @@
 spring:
   zipkin:
-    base-url: https://zipkin.zmy-inc.com:9411/
+    base-url: http://zipkin.zmy-inc.com:9411/
 
 book:
   default:
