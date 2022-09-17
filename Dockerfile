@@ -5,6 +5,6 @@ ADD target/wxapp-web-0.0.1-SNAPSHOT.jar /app.jar
 # 声明服务运行端口
 EXPOSE 8888
 # 指定docker容器启动时运行jar包
-ENTRYPOINT ["java", "-jar","/app.jar"]
+ENTRYPOINT ["java", "-Xloggc:/var/logs/gc.log", "-jar","/app.jar"]
 # 指定维护者的名字
 MAINTAINER zhaomingyu
