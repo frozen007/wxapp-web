@@ -1,3 +1,11 @@
+server:
+  port: 9190
+  jetty:
+    threads:
+      acceptors: 2
+      selectors: 2
+      min: 1
+
 database:
   common:
     validationQuery: SELECT 1
