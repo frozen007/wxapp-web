@@ -1,15 +1,3 @@
-spring:
-  zipkin:
-    base-url: http://zipkin.zmy-inc.com:9411/
-
-book:
-  default:
-    author: zmy
-    name: windy
-
-server:
-  port: 8888
-
 database:
   common:
     validationQuery: SELECT 1

@@ -1,12 +1,12 @@
+server:
+  port: 9190
+
 spring:
   profiles:
     active: dev
 
   application:
     name: wxapp-web
-
-  zipkin:
-    base-url: http://zipkin.zmy-inc.com:9411/
 
   quartz:
     #相关属性配置
@@ -26,29 +26,30 @@ spring:
             useProperties: false
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 10
+            threadCount: 1
             threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true
     #数据库方式
     job-store-type: "jdbc"
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://eureka.zmy-inc.com:8761/eureka/
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://eureka.zmy-inc.com:8761/eureka/
+#
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 5000
+#        loggerLevel: basic
+#
 
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: basic
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

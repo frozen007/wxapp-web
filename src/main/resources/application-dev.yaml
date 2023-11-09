@@ -1,23 +1,11 @@
-spring:
-  zipkin:
-    base-url: http://212.129.252.68:9411/
-
-book:
-  default:
-    author: zmy-dev
-    name: windy-dev
-
-server:
-  port: 9090
-
 database:
   common:
     validationQuery: SELECT 1
 
   dbuser:
     username: wxapp
-    password: javGa2kFLbzQ_
-    url: jdbc:mariadb://212.129.252.68:3306/wxapp
+    password: wxapp1234
+    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/wxapp
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
@@ -26,15 +14,10 @@ database:
 
   dbquartz:
     username: quartz
-    password: 8drFUuACugak6A
-    url: jdbc:mariadb://212.129.252.68:3306/quartz
+    password: quartz1234
+    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/quartz
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
     maxIdle: 4
     minIdle: 0
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://212.129.252.68:8761/eureka/

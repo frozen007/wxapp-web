@@ -2,7 +2,7 @@
 微信平台后端服务
 
 ## docker
-`
+```shell
 docker run --name wxapp-web_01 \
 --dns 10.0.16.10 \
 --net myz-net \
@@ -12,8 +12,7 @@ docker run --name wxapp-web_01 \
 -v /etc/localtime:/etc/localtime \
 -v /appdata/app/wxapp-web/logs:/var/logs \
 -d myz/wxapp-web:52
-
-`
+```
 
 ## 基础服务
 
@@ -35,8 +34,7 @@ docker run --name wxapp-web_01 \
 * com.myz.inf.batch.BatchJobBeanPostProcessor: 用于初始化job组件，进行job注册，并封装调用底层调度组件
 * com.myz.inf.batch.quartz.QuartzSchedulerSupport: 使用quartz调度组件的实现
 
-`
-
+```java
     @Bean
     public BatchJobBeanPostProcessor batchJobBeanPostProcessor() {
         return new BatchJobBeanPostProcessor();
@@ -47,5 +45,4 @@ docker run --name wxapp-web_01 \
         return new QuartzSchedulerSupport(quartzScheduler);
     }
 
-`
-
+```

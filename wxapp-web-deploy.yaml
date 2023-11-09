@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wxapp-web-deployment
+spec:
+  selector:
+    matchLabels:
+      app: wxapp-web
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: wxapp-web
+        version: __LABEL_VERSION__
+    spec:
+      containers:
+        - name: wxapp-web
+          image: myz/wxapp-web:1.0
+          ports:
+            - containerPort: 9190
+              name: wxapp-web
