@@ -4,8 +4,8 @@ database:
 
   dbuser:
     username: wxapp
-    password: javGa2kFLbzQ_
-    url: jdbc:mariadb://172.17.0.1:3306/wxapp
+    password: wxapp1234
+    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/wxapp
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
@@ -14,8 +14,8 @@ database:
 
   dbquartz:
     username: quartz
-    password: 8drFUuACugak6A
-    url: jdbc:mariadb://172.17.0.1:3306/quartz
+    password: quartz1234
+    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/quartz
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4

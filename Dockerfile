@@ -5,6 +5,6 @@ FROM registry.cn-hangzhou.aliyuncs.com/zmy-repo/openjdk-17-jre:openjdk-17-jre
 ADD target/wxapp-web-0.0.1-SNAPSHOT.jar /wxapp-web.jar
 
 # 指定docker容器启动时运行jar包
-ENTRYPOINT ["java", "-Xloggc:/var/gc.log", "-jar","/wxapp-web.jar"]
+ENTRYPOINT ["java", "-Xms128m", "-Xmx200m", "-Xloggc:/var/gc.log", "-jar","/wxapp-web.jar"]
 # 指定维护者的名字
 MAINTAINER zhaomingyu

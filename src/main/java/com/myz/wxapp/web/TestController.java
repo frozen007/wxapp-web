@@ -4,6 +4,8 @@ import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.util.CommonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,9 @@ public class TestController {
 //    @Autowired
 //    private WxAppClient wxAppClient;
 
+    @Autowired
+    private ServerProperties serverProperties;
+
     @RequestMapping(path="/getusers")
     public CommonResponse getUsers() {
 //        List<UserInfo> users = wxAppClient.getUsers();
@@ -42,6 +47,15 @@ public class TestController {
         data.put("users", users);
 
         logger.info("get users size={}", users.size());
+
+        return new CommonResponse().success(data);
+    }
+
+    @RequestMapping(path="/server-prop")
+    public CommonResponse getServerProperties() {
+        Map<String, Object> data = new HashMap<>();
+
+        data.put("serverProperties", serverProperties);
 
         return new CommonResponse().success(data);
     }

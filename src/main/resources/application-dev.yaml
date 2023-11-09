@@ -1,3 +1,11 @@
+server:
+  port: 9190
+  jetty:
+    threads:
+      acceptors: 2
+      selectors: 2
+      min: 1
+
 database:
   common:
     validationQuery: SELECT 1
@@ -5,7 +13,7 @@ database:
   dbuser:
     username: wxapp
     password: wxapp1234
-    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/wxapp
+    url: jdbc:mariadb://10.8.0.1:31306/wxapp
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
@@ -15,7 +23,7 @@ database:
   dbquartz:
     username: quartz
     password: quartz1234
-    url: jdbc:mariadb://mariadb-0.mariadb.mariadb:3306/quartz
+    url: jdbc:mariadb://10.8.0.1:31306/quartz
     driverClassName: org.mariadb.jdbc.Driver
     initialSize: 0
     maxTotal: 4
