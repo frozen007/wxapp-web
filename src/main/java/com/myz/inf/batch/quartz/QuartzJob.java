@@ -2,6 +2,7 @@ package com.myz.inf.batch.quartz;
 
 import com.myz.inf.batch.BatchScheduleManager;
 import com.myz.inf.batch.JobRunner;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -11,6 +12,7 @@ import org.quartz.JobExecutionException;
  * Created by myz
  * Date 2020/12/16 15:26
  */
+@DisallowConcurrentExecution
 public class QuartzJob implements Job {
 
     @Override
