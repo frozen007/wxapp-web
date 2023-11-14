@@ -19,3 +19,11 @@ spec:
           ports:
             - containerPort: 9190
               name: wxapp-web
+          volumeMounts:
+            - name: date-config
+              mountPath: /etc/localtime
+      volumes:
+        - name: date-config
+          #挂载主机timezone
+          hostPath:
+            path: /usr/share/zoneinfo/Asia/Shanghai
