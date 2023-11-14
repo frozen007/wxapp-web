@@ -16,7 +16,7 @@ steps:
 
   - name: image
     commands:
-      - docker build -t myz/wxapp-web:1.0 .
+      - docker --config /root/.docker build -t myz/wxapp-web:1.0 .
 
   - name: put-version
     commands:
