@@ -21,9 +21,9 @@ class WXAppWebApplicationTests {
 	@Test
 	void test001() throws Exception {
 		int n=2;
-		CountDownLatch latch = new CountDownLatch(n);
+		final CountDownLatch latch = new CountDownLatch(n);
 		Thread[] ts = new Thread[n];
-		Random random = new Random(System.currentTimeMillis());
+		final Random random = new Random(System.currentTimeMillis());
 		for (int i = 0; i < ts.length; i++) {
 			Thread t = new Thread(new Runnable() {
 				@Override

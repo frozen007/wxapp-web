@@ -1,6 +1,13 @@
 server:
   port: 9190
 
+dubbo:
+  application:
+    name: wxapp-web
+  protocol:
+    name: tri
+    port: -1
+
 spring:
   profiles:
     active: prod

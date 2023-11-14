@@ -1,6 +1,7 @@
 package com.myz.wxapp;
 
 import com.myz.wxapp.util.JsonKit;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -9,6 +10,7 @@ import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableDubbo
 public class WXAppWebApplication extends SpringApplication {
 
 	public WXAppWebApplication() {

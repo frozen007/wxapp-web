@@ -6,6 +6,13 @@ server:
       selectors: 2
       min: 1
 
+dubbo:
+  protocol:
+    name: tri
+    port: -1
+  registry:
+    address: zookeeper://${zookeeper.address:127.0.0.1}:2181/dubbo
+
 database:
   common:
     validationQuery: SELECT 1

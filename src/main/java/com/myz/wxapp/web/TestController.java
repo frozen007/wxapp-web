@@ -2,6 +2,8 @@ package com.myz.wxapp.web;
 
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.util.CommonResponse;
+import com.myz.wxapp.wxappserver.dubbo.api.DemoService;
+import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class TestController {
 
 //    @Autowired
 //    private WxAppClient wxAppClient;
+
+    @DubboReference
+    private DemoService demoService;
 
     @Autowired
     private ServerProperties serverProperties;
@@ -56,6 +61,17 @@ public class TestController {
         Map<String, Object> data = new HashMap<>();
 
         data.put("serverProperties", serverProperties);
+
+        return new CommonResponse().success(data);
+    }
+
+    @RequestMapping(path="/dubbo-demo")
+    public CommonResponse getDubboDemo(String name) {
+        Map<String, Object> data = new HashMap<>();
+
+        String result = demoService.sayHello(name);
+
+        data.put("sayHello", result);
 
         return new CommonResponse().success(data);
     }
