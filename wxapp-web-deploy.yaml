@@ -20,10 +20,16 @@ spec:
             - containerPort: 9190
               name: wxapp-web
           volumeMounts:
-            - name: date-config
+            - name: localtime-config
               mountPath: /etc/localtime
+            - name: timezone-config
+              mountPath: /etc/timezone
       volumes:
-        - name: date-config
+        - name: localtime-config
+          #挂载主机localtime
+          hostPath:
+            path: /etc/localtime
+        - name: timezone-config
           #挂载主机timezone
           hostPath:
-            path: /usr/share/zoneinfo/Asia/Shanghai
+            path: /etc/timezone
