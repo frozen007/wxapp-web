@@ -1,8 +1,11 @@
 package com.myz.wxapp.web;
 
 import com.myz.wxapp.api.DemoService;
+import com.myz.wxapp.api.task.QueryTaskRequest;
+import com.myz.wxapp.api.task.QueryTaskResult;
 import com.myz.wxapp.api.task.TaskService;
 import com.myz.wxapp.api.task.UserTask;
+import com.myz.wxapp.task.TaskConverter;
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.util.CommonResponse;
 import org.apache.dubbo.config.annotation.DubboReference;
@@ -86,9 +89,10 @@ public class TestController {
         Map<String, Object> data = new HashMap<>();
 
         logger.info("invoke: userId={}", userId);
-        List<UserTask> userTasks = taskService.queryTask(userId, null);
-
-        data.put("tasks", userTasks);
+        QueryTaskRequest request = QueryTaskRequest.newBuilder().setUserId(userId).build();
+        QueryTaskResult queryTaskResult = taskService.queryTask(request);
+        List<UserTask> tasksList = queryTaskResult.getTasksList();
+        data.put("tasks", TaskConverter.convertToVO(tasksList));
 
         return new CommonResponse().success(data);
     }
