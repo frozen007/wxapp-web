@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.TimeZone;
-
 @SpringBootApplication
 @EnableDubbo
 public class WXAppWebApplication extends SpringApplication {

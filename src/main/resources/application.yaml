@@ -4,6 +4,7 @@ server:
 dubbo:
   application:
     name: wxapp-web
+    qos-port: 33333
   protocol:
     name: tri
     port: -1

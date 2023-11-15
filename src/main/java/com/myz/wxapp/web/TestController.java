@@ -1,8 +1,10 @@
 package com.myz.wxapp.web;
 
+import com.myz.wxapp.api.DemoService;
+import com.myz.wxapp.api.task.TaskService;
+import com.myz.wxapp.api.task.UserTask;
 import com.myz.wxapp.user.bean.UserInfo;
 import com.myz.wxapp.util.CommonResponse;
-import com.myz.wxapp.wxappserver.dubbo.api.DemoService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,9 @@ public class TestController {
 
     @DubboReference
     private DemoService demoService;
+
+    @DubboReference
+    private TaskService taskService;
 
     @Autowired
     private ServerProperties serverProperties;
@@ -72,6 +77,18 @@ public class TestController {
         String result = demoService.sayHello(name);
 
         data.put("sayHello", result);
+
+        return new CommonResponse().success(data);
+    }
+
+    @RequestMapping(path="/query-tasks")
+    public CommonResponse queryTasks(Long userId) {
+        Map<String, Object> data = new HashMap<>();
+
+        logger.info("invoke: userId={}", userId);
+        List<UserTask> userTasks = taskService.queryTask(userId, null);
+
+        data.put("tasks", userTasks);
 
         return new CommonResponse().success(data);
     }
