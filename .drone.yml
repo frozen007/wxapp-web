@@ -12,7 +12,7 @@ trigger:
 steps:
   - name: build
     commands:
-      - mvn compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn -U compile package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 
   - name: image
     commands:
