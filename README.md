@@ -1,18 +1,10 @@
 # wxapp-web
 微信平台后端服务
 
-## docker
-```shell
-docker run --name wxapp-web_01 \
---dns 10.0.16.10 \
---net myz-net \
--e 'spring.profiles.active'=prod \
--e 'app.instance.name'=wxapp-web_01 \
--e TZ="Asia/Shanghai" \
--v /etc/localtime:/etc/localtime \
--v /appdata/app/wxapp-web/logs:/var/logs \
--d myz/wxapp-web:52
-```
+## 部署
+- [.drone.yml](.drone.yml): DroneCD部署脚本
+- [Dockerfile](Dockerfile): Docker镜像构建脚本
+- [wxapp-web-deploy.yaml](wxapp-web-deploy.yaml): k8s部署脚本
 
 ## 基础服务
 
